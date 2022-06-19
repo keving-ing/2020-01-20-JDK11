@@ -154,5 +154,11 @@ public class ArtsmiaDAO {
 			return null;
 		}
 	}
+
+	public Map<Integer, Artist> getIdMapArtists() {
+		return idMapArtists;
+	}
+	
+	
 	
 }

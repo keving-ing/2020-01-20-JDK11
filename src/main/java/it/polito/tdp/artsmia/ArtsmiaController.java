@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.artsmia.model.Artist;
 import it.polito.tdp.artsmia.model.CoppiaIdPeso;
 import it.polito.tdp.artsmia.model.Model;
 import javafx.event.ActionEvent;
@@ -58,6 +59,18 @@ public class ArtsmiaController {
     void doCalcolaPercorso(ActionEvent event) {
     	txtResult.clear();
     	txtResult.appendText("Calcola percorso");
+    	
+    	int artist_id;
+    	try
+    	{
+    		artist_id = Integer.parseInt(this.txtArtista.getText());
+    		Artist a = model.getIdMapArtisti().get(artist_id);
+    		txtResult.appendText(model.calcolaPercorso(a).toString());
+    	}
+    	catch(NumberFormatException e)
+    	{
+    		txtResult.appendText("INSERISCI L'ID DI UN ARTISTA");
+    	}
     }
 
     @FXML
@@ -71,6 +84,7 @@ public class ArtsmiaController {
     	{
     		txtResult.appendText(model.creaGrafo(ruolo));
     		this.btnArtistiConnessi.setDisable(false);
+    		this.btnCalcolaPercorso.setDisable(false);
     	}
     	else
     	{
